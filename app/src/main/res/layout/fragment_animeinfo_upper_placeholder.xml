@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge>
+<com.facebook.shimmer.ShimmerFrameLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/animeInfoUpperShimmer"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/topView"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/animeInfoRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topView">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/animeCardView"
+            android:layout_width="128dp"
+            android:layout_height="210dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/shimmer_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/animeInfoTitle"
+            android:layout_width="0dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="@dimen/anime_info_item_start_margin"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="@color/shimmer_background"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/typeLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/animeCardView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:padding="5dp"
+            app:cardUseCompatPadding="false"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/typeLayout"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            app:cardBackgroundColor="@color/shimmer_background"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="@dimen/anime_info_item_start_margin"
+            android:layout_marginBottom="@dimen/anime_info_item_spacing"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/releasedLayout"
+            app:layout_constraintStart_toEndOf="@id/animeCardView"
+            app:layout_constraintTop_toBottomOf="@+id/animeInfoTitle">
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/releasedLayout"
+            android:layout_width="90dp"
+            android:layout_height="20dp"
+            app:cardBackgroundColor="@color/shimmer_background"
+            app:cardCornerRadius="8dp"
+            android:layout_marginStart="@dimen/anime_info_item_start_margin"
+            android:layout_marginBottom="@dimen/anime_info_item_spacing"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/statusLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/animeCardView"
+            app:layout_constraintTop_toBottomOf="@+id/typeLayout"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/statusLayout"
+
+            android:layout_width="70dp"
+            android:layout_height="18dp"
+            app:cardBackgroundColor="@color/shimmer_background"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="@dimen/anime_info_item_start_margin"
+            android:layout_marginBottom="@dimen/anime_info_item_spacing"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/flowLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/animeCardView"
+            app:layout_constraintTop_toBottomOf="@+id/releasedLayout"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/flowLayout"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="@dimen/anime_info_item_start_margin"
+            app:cardBackgroundColor="@color/shimmer_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/animeCardView"
+            app:layout_constraintTop_toBottomOf="@+id/statusLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>
+</merge>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#3B3B44</color>
+    <color name="colorAccent">@color/sub_dub_text</color>
+
+
+    <color name="anime_episode">#EAEAEB</color>
+
+    <color name="home_header">#212121</color>
+    <color name="anime_title">@color/home_header</color>
+    <color name="sub_dub_text">#3B3B44</color>
+    <color name="media_player_controls_background">#60000000</color>
+    <color name="transparent_background">@color/media_player_controls_background</color>
+    //Media Player Controls
+    <color name="media_player_controls">#ffffff</color>
+
+    //Fragment Anime Info
+    <color name="types_title">#776E6E</color>
+    <color name="types_value">#3D3838</color>
+    <color name="search_back">@color/sub_dub_text</color>
+    <color name="buffer_color">#e5e5e5</color>
+
+    //AnimeInfo
+    <color name="episode_background">#F2F2F2</color>
+    <color name="episode_watched_progress">#6C6C6C</color>
+
+    <color name="home_icon">@color/home_header</color>
+    <color name="shimmer_background">#dddddd</color>
+
+</resources>
