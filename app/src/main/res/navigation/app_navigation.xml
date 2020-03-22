@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="net.xblacky.animexstream.ui.main.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_animeInfoFragment"
+            app:destination="@id/animeInfoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_videoPlayerActivity"
+            app:destination="@id/videoPlayerActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animeInfoFragment"
+        android:name="net.xblacky.animexstream.ui.main.animeinfo.AnimeInfoFragment"
+        android:label="AnimeInfoFragment"
+        tools:layout="@layout/fragment_animeinfo">
+        <action
+            android:id="@+id/action_animeInfoFragment_to_videoPlayerActivity"
+            app:destination="@id/videoPlayerActivity" />
+        <argument
+            android:name="categoryUrl"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <activity
+        android:id="@+id/videoPlayerActivity"
+        android:name="net.xblacky.animexstream.ui.main.player.VideoPlayerActivity"
+        android:label="VideoPlayerActivity"
+        tools:layout="@layout/activity_video_player">
+        <argument
+            android:name="episodeUrl"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="episodeNumber"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="animeName"
+            app:argType="string" />
+    </activity>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="net.xblacky.animexstream.ui.main.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_animeInfoFragment"
+            app:destination="@id/animeInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="net.xblacky.animexstream.ui.main.favourites.FavouriteFragment"
+        android:label="FavouriteFragment"
+        tools:layout="@layout/fragment_favourite">
+        <action
+            android:id="@+id/action_favouriteFragment_to_animeInfoFragment"
+            app:destination="@id/animeInfoFragment" />
+    </fragment>
+</navigation>

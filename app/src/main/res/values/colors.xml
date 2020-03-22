@@ -22,8 +22,8 @@
     <color name="buffer_color">#e5e5e5</color>
 
     //AnimeInfo
-    <color name="episode_background">#F2F2F2</color>
-    <color name="episode_watched_progress">#6C6C6C</color>
+    <color name="episode_background">#FFFFFF</color>
+    <color name="episode_watched_progress">#f3f3f3</color>
 
     <color name="home_icon">@color/home_header</color>
     <color name="shimmer_background">#dddddd</color>

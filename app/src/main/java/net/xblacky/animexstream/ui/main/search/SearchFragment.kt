@@ -12,6 +12,7 @@ import android.widget.TextView.OnEditorActionListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_search.view.*
@@ -20,9 +21,10 @@ import kotlinx.android.synthetic.main.fragment_search_placeholder.view.*
 import net.xblacky.animexstream.R
 import net.xblacky.animexstream.ui.main.search.epoxy.SearchController
 import net.xblacky.animexstream.utils.ItemOffsetDecoration
+import net.xblacky.animexstream.utils.model.AnimeMetaModel
 
 
-class SearchFragment : Fragment(), View.OnClickListener{
+class SearchFragment : Fragment(), View.OnClickListener, SearchController.EpoxySearchAdapterCallbacks{
 
     private lateinit var rootView: View
     private lateinit var viewModel: SearchViewModel
@@ -37,6 +39,7 @@ class SearchFragment : Fragment(), View.OnClickListener{
         setAdapters()
         setRecyclerViewScroll()
         setEditTextListener()
+        showKeyBoard()
         return rootView
     }
 
@@ -76,7 +79,7 @@ class SearchFragment : Fragment(), View.OnClickListener{
     }
 
     private fun setAdapters(){
-        searchController = SearchController()
+        searchController = SearchController(this)
         searchController.spanCount = 3
         rootView.searchRecyclerView.apply {
             layoutManager = GridLayoutManager(context, 3)
@@ -90,6 +93,9 @@ class SearchFragment : Fragment(), View.OnClickListener{
     private fun setObserver(){
         viewModel.searchList.observe(viewLifecycleOwner, Observer {
             searchController.setData(it ,viewModel.isLoading.value?.isLoading ?: false)
+            if(!it.isNullOrEmpty()){
+                hideKeyBoard()
+            }
         })
 
 
@@ -113,7 +119,9 @@ class SearchFragment : Fragment(), View.OnClickListener{
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.backButton ->{
-                activity?.finish()
+                hideKeyBoard()
+                findNavController().popBackStack()
+
             }
         }
     }
@@ -138,6 +146,15 @@ class SearchFragment : Fragment(), View.OnClickListener{
     private fun hideKeyBoard(){
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
+    }
+
+    private fun showKeyBoard(){
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(activity?.currentFocus, 0)
+    }
+
+    override fun animeTitleClick(model: AnimeMetaModel) {
+        findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToAnimeInfoFragment(categoryUrl = model.categoryUrl))
     }
 
 }

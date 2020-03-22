@@ -9,6 +9,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_animeinfo.*
@@ -41,16 +42,19 @@ class AnimeInfoFragment : Fragment() {
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_animeinfo, container, false)
         viewModel = ViewModelProvider(this).get(AnimeInfoViewModel::class.java)
+        getBundleData()
         setupRecyclerView()
         setObserver()
         transitionListener()
         setOnClickListeners()
+        viewModel.fetchAnimeInfo()
         return rootView
     }
 
-    fun updateCategoryUrl(url: String) {
-        viewModel.setUrl(url)
-        viewModel.fetchAnimeInfo()
+
+    private fun getBundleData(){
+        val args =AnimeInfoFragmentArgs.fromBundle(bundle = arguments!!)
+        viewModel.setUrl(args.categoryUrl!!)
     }
 
     private fun setObserver() {
@@ -167,7 +171,7 @@ class AnimeInfoFragment : Fragment() {
         }
 
         rootView.back.setOnClickListener {
-            activity?.finish()
+            findNavController().popBackStack()
         }
     }
 
@@ -175,8 +179,8 @@ class AnimeInfoFragment : Fragment() {
         viewModel.toggleFavourite()
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         if(episodeController.isWatchedHelperUpdated()){
             episodeController.setData(viewModel.episodeList.value)
         }

@@ -9,7 +9,7 @@
         <OnSwipe
             motion:onTouchUp="stop"
             app:dragDirection="dragUp"
-            app:touchAnchorId="@+id/homeRecyclerView"
+            app:touchAnchorId="@+id/recyclerView"
             app:moveWhenScrollAtTop="true"
             app:touchAnchorSide="top" />
     </Transition>

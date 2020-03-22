@@ -161,12 +161,12 @@ abstract class AnimeMiniHeaderModel : EpoxyModelWithHolder<AnimeMiniHeaderModel.
 
 }
 
-@EpoxyModelClass(layout = R.layout.recycler_home_header)
-abstract class HomeHeaderModel : EpoxyModelWithHolder<HomeHeaderModel.HomeHeaderHolder>(){
-
-    class HomeHeaderHolder : EpoxyHolder(){
-        override fun bindView(itemView: View) {
-        }
-    }
-}
+//@EpoxyModelClass(layout = R.layout.recycler_home_header)
+//abstract class HomeHeaderModel : EpoxyModelWithHolder<HomeHeaderModel.HomeHeaderHolder>(){
+//
+//    class HomeHeaderHolder : EpoxyHolder(){
+//        override fun bindView(itemView: View) {
+//        }
+//    }
+//}
 

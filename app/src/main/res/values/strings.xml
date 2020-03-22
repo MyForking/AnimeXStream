@@ -13,4 +13,5 @@
     <string name="something_went_wrong">Something Went Wrong</string>
 
     <string name="no_internet">No Internet Connection</string>
+    <string name="favourite">Favourites</string>
 </resources>

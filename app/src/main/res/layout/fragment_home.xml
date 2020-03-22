@@ -7,11 +7,21 @@
     android:layout_height="match_parent"
     app:layoutDescription="@xml/motion_scene">
 
-    <include
-        layout="@layout/recycler_home_header"
-        />
+    <TextView
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:textSize="36sp"
+        android:textColor="@color/home_header"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/discover"/>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/search"
@@ -25,7 +35,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@id/shadowLayout"
         android:focusable="true" />
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/favorite"
@@ -56,7 +66,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/homeRecyclerView"
+        android:id="@+id/recyclerView"
         android:paddingBottom="25dp"
         android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="parent"

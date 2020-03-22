@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.realm.*
-import net.xblacky.animexstream.utils.CommonViewModel
 import net.xblacky.animexstream.utils.Utils
 import net.xblacky.animexstream.utils.constants.C
 import net.xblacky.animexstream.utils.model.AnimeMetaModel
@@ -26,7 +25,11 @@ class HomeViewModel : ViewModel(){
     private val compositeDisposable = CompositeDisposable()
     private val realmListenerList = ArrayList<RealmResults<AnimeMetaModel>>()
 
-    fun fetchHomeList(){
+    init {
+        fetchHomeList()
+    }
+
+    private fun fetchHomeList(){
         fetchRecentSub()
         fetchRecentDub()
         fetchPopular()
@@ -43,15 +46,7 @@ class HomeViewModel : ViewModel(){
 
             override fun onNext(response: ResponseBody) {
                 val list =parseList(response = response.string(), typeValue = typeValue)
-//                updateList(list = list, typeValue = typeValue)
-//
                 homeRepository.addDataInRealm(list)
-//                homeRepository.removeFromRealm(typeValue)
-//                val newAnimeList = animeList.value
-//                newAnimeList?.addAll(list)
-//                animeList.value = newAnimeList
-//                printAnimeMetaModel(animeList = animeList.value)
-//
             }
 
             override fun onError(e: Throwable) {
@@ -71,6 +66,8 @@ class HomeViewModel : ViewModel(){
 //        super.updateErrorModel(true , e , isListEmpty)
 
     }
+
+
 
     private fun parseList(response: String, typeValue: Int): ArrayList<AnimeMetaModel>{
         return when(typeValue){
@@ -139,19 +136,6 @@ class HomeViewModel : ViewModel(){
     }
 
 
-//    private fun printAnimeMetaModel(animeList: ArrayList<AnimeMetaModel>?){
-//        animeList?.forEach {
-//            Timber.d("Title: "+it.title)
-//            Timber.d("Type: "+ it.type.toString())
-//            Timber.d("ImageUrl:" +it.imageUrl)
-//            Timber.d("ID: "+ it.categoryUrl)
-//            Timber.d("EpisodeURL : "+ it.episodeUrl)
-//            Timber.d("EpisodeNumber: "+ it.episodeNumber)
-//            Timber.d("-------------------------------------------------------------------------------------\n")
-//
-//        }
-//    }
-
     private fun makeEmptyArrayList(): ArrayList<HomeScreenModel>{
         var i = 1
         val arrayList: ArrayList<HomeScreenModel> = ArrayList()
@@ -210,6 +194,14 @@ class HomeViewModel : ViewModel(){
         }
         compositeDisposable.add(homeRepository.fetchNewestAnime(1).subscribeWith(getHomeListObserver(C.TYPE_NEW_SEASON)))
         addRealmListener(C.TYPE_NEW_SEASON)
+    }
+
+    override fun onCleared() {
+        homeRepository.removeFromRealm()
+        if(!compositeDisposable.isDisposed){
+            compositeDisposable.dispose()
+        }
+        super.onCleared()
     }
 
 

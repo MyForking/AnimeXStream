@@ -88,6 +88,13 @@ class SearchViewModel : CommonViewModel() {
         super.updateLoading(loading = isLoading, isListEmpty = _searchList.value.isNullOrEmpty())
     }
 
+    override fun onCleared() {
+        if(!compositeDisposable.isDisposed){
+            compositeDisposable.dispose()
+        }
+        super.onCleared()
+    }
+
     private fun updateError(show: Boolean, e: Throwable?) {
         super.updateErrorModel(show = show, e = e, isListEmpty = _searchList.value.isNullOrEmpty())
     }

@@ -53,15 +53,12 @@ class HomeRepository {
         }
     }
 
-    fun removeFromRealm(typeValue: Int){
+    fun removeFromRealm(){
         val realm: Realm = Realm.getInstance(InitalizeRealm.getConfig())
 
         realm.executeTransaction{
-            val results = it.where(AnimeMetaModel::class.java).equalTo("typeValue", typeValue).sort("insertionOrder",
-                Sort.ASCENDING).findAll()
-            for(i in 5 until results.size){
-                results[i]?.deleteFromRealm()
-            }
+            val results = it.where(AnimeMetaModel::class.java).greaterThanOrEqualTo("insertionOrder", 19).findAll()
+            results.deleteAllFromRealm()
         }
     }
 

@@ -1,29 +1,22 @@
 package net.xblacky.animexstream.ui.main.home.epoxy
 
-import android.content.Intent
 import android.view.View
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.Carousel.setDefaultGlobalSnapHelperFactory
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.TypedEpoxyController
 import net.xblacky.animexstream.R
-import net.xblacky.animexstream.ui.main.animeinfo.AnimeInfoActivity
-import net.xblacky.animexstream.ui.main.player.VideoPlayerActivity
 import net.xblacky.animexstream.utils.constants.C
 import net.xblacky.animexstream.utils.epoxy.AnimeCommonModel_
 import net.xblacky.animexstream.utils.model.AnimeMetaModel
 import net.xblacky.animexstream.utils.model.HomeScreenModel
 
 
-class HomeController : TypedEpoxyController<ArrayList<HomeScreenModel>>() {
+class HomeController(var adapterCallbacks: EpoxyAdapterCallbacks) : TypedEpoxyController<ArrayList<HomeScreenModel>>() {
 
 
     override fun buildModels(data: ArrayList<HomeScreenModel>) {
 
-        //TODO Change Header to AutoModel
-//        HomeHeaderModel_()
-//            .id("header")
-//            .addTo(this)
 
         data.forEach { homeScreenModel ->
 
@@ -44,8 +37,8 @@ class HomeController : TypedEpoxyController<ArrayList<HomeScreenModel>>() {
                         movieModelList.add(
                             AnimeCommonModel_()
                                 .id(animeMetaModel.ID)
-                                .clickListener { model, _, clickedView, _ ->
-                                    clicked(model = model.animeMetaModel(), clickedView = clickedView)
+                                .clickListener { model, _, _, _ ->
+                                   adapterCallbacks.animeTitleClick(model = model.animeMetaModel())
                                 }
                                 .animeMetaModel(animeMetaModel)
                         )
@@ -66,8 +59,8 @@ class HomeController : TypedEpoxyController<ArrayList<HomeScreenModel>>() {
 
                         AnimePopularModel_()
                             .id(animeMetaModel.ID)
-                            .clickListener { model, _, clickedView, _ ->
-                                clicked(model = model.animeMetaModel(), clickedView = clickedView)
+                            .clickListener { model, _, _, _ ->
+                                adapterCallbacks.animeTitleClick(model = model.animeMetaModel())
                             }
                             .animeMetaModel(animeMetaModel)
                             .addTo(this)
@@ -82,7 +75,7 @@ class HomeController : TypedEpoxyController<ArrayList<HomeScreenModel>>() {
                         AnimeSubDubModel2_()
                             .id(animeMetaModel.ID)
                             .clickListener { model, _, clickedView, _ ->
-                                recentSubDubClick(model,clickedView)
+                                recentSubDubClick(model.animeMetaModel(),clickedView)
                             }
                             .animeMetaModel(animeMetaModel)
                         )
@@ -99,28 +92,30 @@ class HomeController : TypedEpoxyController<ArrayList<HomeScreenModel>>() {
 
     }
 
-    private fun recentSubDubClick(model: AnimeSubDubModel2_, clickedView: View){
+    private fun recentSubDubClick(model: AnimeMetaModel, clickedView: View){
         when(clickedView.id){
             R.id.backgroundImage->{
-                val intent = Intent(clickedView.context, VideoPlayerActivity::class.java)
-                intent.putExtra("episodeUrl", model.animeMetaModel().episodeUrl)
-                intent.putExtra("episodeNumber",model.animeMetaModel().episodeNumber)
-                intent.putExtra("animeName",model.animeMetaModel().title)
-                clickedView.context.startActivity(intent)
+//                val intent = Intent(clickedView.context, VideoPlayerActivity::class.java)
+//                intent.putExtra("episodeUrl", model.animeMetaModel().episodeUrl)
+//                intent.putExtra("episodeNumber",model.animeMetaModel().episodeNumber)
+//                intent.putExtra("animeName",model.animeMetaModel().title)
+//                clickedView.context.startActivity(intent)
+                adapterCallbacks.recentSubDubEpisodeClick(model = model )
             }
             R.id.animeTitle->{
-                val intent = Intent(clickedView.context, AnimeInfoActivity::class.java)
-                intent.putExtra("categoryUrl", model.animeMetaModel().categoryUrl)
-                clickedView.context.startActivity(intent)
+//                val intent = Intent(clickedView.context, AnimeInfoActivity::class.java)
+//                intent.putExtra("categoryUrl", model.animeMetaModel().categoryUrl)
+//                clickedView.context.startActivity(intent)
+                adapterCallbacks.animeTitleClick(model = model)
             }
         }
 
     }
 
-    private fun clicked(model: AnimeMetaModel, clickedView: View){
-        val intent = Intent(clickedView.context, AnimeInfoActivity::class.java)
-        intent.putExtra("categoryUrl", model.categoryUrl)
-        clickedView.context.startActivity(intent)
+
+    interface EpoxyAdapterCallbacks{
+        fun recentSubDubEpisodeClick(model: AnimeMetaModel)
+        fun animeTitleClick(model: AnimeMetaModel)
     }
 
 }

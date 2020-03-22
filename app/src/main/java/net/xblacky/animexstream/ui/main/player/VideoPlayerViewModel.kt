@@ -85,4 +85,11 @@ class VideoPlayerViewModel : ViewModel() {
             episodeRepository.saveContent(content)
         }
     }
+
+    override fun onCleared() {
+        if(!compositeDisposable.isDisposed){
+            compositeDisposable.dispose()
+        }
+        super.onCleared()
+    }
 }
