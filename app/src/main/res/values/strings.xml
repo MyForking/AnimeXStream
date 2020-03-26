@@ -14,4 +14,9 @@
 
     <string name="no_internet">No Internet Connection</string>
     <string name="favourite">Favourites</string>
+    <string name="status_code_default">Something went Wrong</string>
+    <string name="server_error">Server Error</string>
+    <string name="added_to_favourites">Anime added to Favourites</string>
+    <string name="removed_from_favourites">Anime removed from Favourites</string>
+    <string name="see_more"><![CDATA[See more >]]></string>
 </resources>

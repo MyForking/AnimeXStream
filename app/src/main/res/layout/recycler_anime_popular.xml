@@ -57,6 +57,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/animeCardView"
         app:layout_constraintTop_toBottomOf="@+id/animeTitle"
+        android:textColor="@color/recycler_episode_number"
         android:layout_marginTop="6dp"
         tools:text="Episode 8" />
 

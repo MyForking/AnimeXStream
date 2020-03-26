@@ -21,8 +21,7 @@ open class CommonViewModel : ViewModel() {
 
 
     protected fun updateErrorModel(show: Boolean,e: Throwable?, isListEmpty: Boolean) {
-
-        var errorCode = C.ERROR_CODE_DEFAULT
+        val errorCode: Int
         var errorMsgId = R.string.something_went_wrong
 
         if (e is HttpException) {

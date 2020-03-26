@@ -95,17 +95,9 @@ class HomeController(var adapterCallbacks: EpoxyAdapterCallbacks) : TypedEpoxyCo
     private fun recentSubDubClick(model: AnimeMetaModel, clickedView: View){
         when(clickedView.id){
             R.id.backgroundImage->{
-//                val intent = Intent(clickedView.context, VideoPlayerActivity::class.java)
-//                intent.putExtra("episodeUrl", model.animeMetaModel().episodeUrl)
-//                intent.putExtra("episodeNumber",model.animeMetaModel().episodeNumber)
-//                intent.putExtra("animeName",model.animeMetaModel().title)
-//                clickedView.context.startActivity(intent)
                 adapterCallbacks.recentSubDubEpisodeClick(model = model )
             }
             R.id.animeTitle->{
-//                val intent = Intent(clickedView.context, AnimeInfoActivity::class.java)
-//                intent.putExtra("categoryUrl", model.animeMetaModel().categoryUrl)
-//                clickedView.context.startActivity(intent)
                 adapterCallbacks.animeTitleClick(model = model)
             }
         }

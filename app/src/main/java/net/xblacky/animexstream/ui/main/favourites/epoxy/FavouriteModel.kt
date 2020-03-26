@@ -27,7 +27,8 @@ abstract class FavouriteModel : EpoxyModelWithHolder<FavouriteModel.MovieHolder>
             DrawableTransitionOptions.withCrossFade()).into(holder.animeImageView)
         holder.animeTitle.text = favouriteModel.animeName
         favouriteModel.releasedDate?.let {
-            holder.releasedDate.text = it
+            val text = "Released: $it"
+            holder.releasedDate.text = text
         }
         holder.root.setOnClickListener(clickListener)
 

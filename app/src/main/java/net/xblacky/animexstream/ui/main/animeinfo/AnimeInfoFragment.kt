@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_animeinfo.*
 import kotlinx.android.synthetic.main.fragment_animeinfo.view.*
 import kotlinx.android.synthetic.main.fragment_animeinfo.view.animeInfoRoot
@@ -176,6 +177,11 @@ class AnimeInfoFragment : Fragment() {
     }
 
     private fun onFavouriteClick(){
+        if(viewModel.isFavourite.value!!){
+            Snackbar.make(rootView, getText(R.string.removed_from_favourites), Snackbar.LENGTH_SHORT).show()
+        }else{
+            Snackbar.make(rootView, getText(R.string.added_to_favourites), Snackbar.LENGTH_SHORT).show()
+        }
         viewModel.toggleFavourite()
     }
 

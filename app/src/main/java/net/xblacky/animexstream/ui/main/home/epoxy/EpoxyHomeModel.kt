@@ -10,54 +10,18 @@ import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import kotlinx.android.synthetic.main.recycler_anime_common.view.*
-import kotlinx.android.synthetic.main.recycler_anime_recent_sub_dub.view.*
 import kotlinx.android.synthetic.main.recycler_anime_mini_header.view.*
 import kotlinx.android.synthetic.main.recycler_anime_popular.view.*
-import kotlinx.android.synthetic.main.recycler_anime_recent_sub_dub.view.animeCardView
-import kotlinx.android.synthetic.main.recycler_anime_recent_sub_dub.view.animeImage
-import kotlinx.android.synthetic.main.recycler_anime_recent_sub_dub.view.animeTitle
-import kotlinx.android.synthetic.main.recycler_anime_recent_sub_dub.view.episodeNumber
 import kotlinx.android.synthetic.main.recycler_anime_recent_sub_dub_2.view.*
 import net.xblacky.animexstream.R
 import net.xblacky.animexstream.utils.Tags.GenreTags
 import net.xblacky.animexstream.utils.model.AnimeMetaModel
 import org.apmem.tools.layouts.FlowLayout
+import kotlinx.android.synthetic.main.recycler_anime_popular.view.animeCardView as animeCardViewSubDub
+import kotlinx.android.synthetic.main.recycler_anime_popular.view.animeTitle as animeTitleSubDub
+import kotlinx.android.synthetic.main.recycler_anime_recent_sub_dub_2.view.animeImage as animeImageSubDub
+import kotlinx.android.synthetic.main.recycler_anime_recent_sub_dub_2.view.episodeNumber as episodeNumberSubDub
 
-@EpoxyModelClass(layout = R.layout.recycler_anime_recent_sub_dub)
-abstract class AnimeSubDubModel : EpoxyModelWithHolder<AnimeSubDubModel.SubDubHolder>(){
-
-    @EpoxyAttribute
-    lateinit var animeMetaModel: AnimeMetaModel
-    @EpoxyAttribute
-    lateinit var clickListener: View.OnClickListener
-
-    override fun bind(holder: SubDubHolder) {
-        Glide.with(holder.animeImageView.context).load(animeMetaModel.imageUrl).into(holder.animeImageView)
-        holder.animeTitle.text = animeMetaModel.title
-        holder.animeEpisode.text = animeMetaModel.episodeNumber
-        holder.animeImageView.setOnClickListener(clickListener)
-
-    }
-    class SubDubHolder : EpoxyHolder(){
-
-        lateinit var animeImageView: AppCompatImageView
-        lateinit var animeCardView: CardView
-        lateinit var animeTitle: TextView
-        lateinit var animeEpisode: TextView
-        lateinit var animeType: TextView
-
-        override fun bindView(itemView: View) {
-            animeImageView = itemView.animeImage
-            animeCardView = itemView.animeCardView
-            animeTitle = itemView.animeTitle
-            animeEpisode = itemView.episodeNumber
-            animeType = itemView.animeType
-        }
-
-    }
-}
 
 @EpoxyModelClass(layout = R.layout.recycler_anime_recent_sub_dub_2)
 abstract class AnimeSubDubModel2 : EpoxyModelWithHolder<AnimeSubDubModel2.SubDubHolder>(){
@@ -84,10 +48,10 @@ abstract class AnimeSubDubModel2 : EpoxyModelWithHolder<AnimeSubDubModel2.SubDub
         lateinit var background: AppCompatImageView
 
         override fun bindView(itemView: View) {
-            animeImageView = itemView.animeImage
-            animeCardView = itemView.animeCardView
-            animeTitle = itemView.animeTitle
-            animeEpisode = itemView.episodeNumber
+            animeImageView = itemView.animeImageSubDub
+            animeCardView = itemView.animeCardViewSubDub
+            animeTitle = itemView.animeTitleSubDub
+            animeEpisode = itemView.episodeNumberSubDub
             background = itemView.backgroundImage
         }
 
@@ -118,7 +82,6 @@ abstract class AnimePopularModel : EpoxyModelWithHolder<AnimePopularModel.Popula
     class PopularHolder : EpoxyHolder(){
 
         lateinit var animeImageView: AppCompatImageView
-        lateinit var animeCardView: CardView
         lateinit var animeTitle: TextView
         lateinit var animeEpisode: TextView
         lateinit var flowLayout: FlowLayout
@@ -126,7 +89,6 @@ abstract class AnimePopularModel : EpoxyModelWithHolder<AnimePopularModel.Popula
 
         override fun bindView(itemView: View) {
             animeImageView = itemView.animeImage
-            animeCardView = itemView.animeCardView
             animeTitle = itemView.animeTitle
             animeEpisode = itemView.episodeNumber
             flowLayout = itemView.flowLayout
@@ -161,12 +123,4 @@ abstract class AnimeMiniHeaderModel : EpoxyModelWithHolder<AnimeMiniHeaderModel.
 
 }
 
-//@EpoxyModelClass(layout = R.layout.recycler_home_header)
-//abstract class HomeHeaderModel : EpoxyModelWithHolder<HomeHeaderModel.HomeHeaderHolder>(){
-//
-//    class HomeHeaderHolder : EpoxyHolder(){
-//        override fun bindView(itemView: View) {
-//        }
-//    }
-//}
 

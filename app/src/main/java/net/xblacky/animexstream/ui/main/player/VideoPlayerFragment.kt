@@ -7,13 +7,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.audio.AudioAttributes
@@ -24,8 +23,10 @@ import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.*
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.TrackSelectionDialogBuilder
+import com.google.android.exoplayer2.upstream.DataSpec
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.upstream.HttpDataSource
+import com.google.android.exoplayer2.upstream.HttpDataSource.InvalidResponseCodeException
 import kotlinx.android.synthetic.main.error_screen_video_player.view.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
@@ -33,8 +34,12 @@ import kotlinx.android.synthetic.main.fragment_video_player.*
 import kotlinx.android.synthetic.main.fragment_video_player.view.*
 import kotlinx.android.synthetic.main.fragment_video_player_placeholder.view.*
 import net.xblacky.animexstream.R
+import net.xblacky.animexstream.utils.constants.C.Companion.ERROR_CODE_DEFAULT
+import net.xblacky.animexstream.utils.constants.C.Companion.NO_INTERNET_CONNECTION
+import net.xblacky.animexstream.utils.constants.C.Companion.RESPONSE_UNKNOWN
 import net.xblacky.animexstream.utils.model.Content
 import timber.log.Timber
+import java.io.IOException
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 
@@ -213,8 +218,10 @@ class VideoPlayerFragment : Fragment(), View.OnClickListener, Player.EventListen
     }
 
     private fun refreshData() {
-        if (::content.isInitialized) {
-            loadVideo(player.currentPosition, true)
+        if (::content.isInitialized && !content.url.isNullOrEmpty()) {
+                loadVideo(player.currentPosition, true)
+        }else{
+            (activity as VideoPlayerActivity).refreshM3u8Url()
         }
 
     }
@@ -248,7 +255,7 @@ class VideoPlayerFragment : Fragment(), View.OnClickListener, Player.EventListen
 
     }
 
-    private fun showLoading(showLoading: Boolean) {
+    fun showLoading(showLoading: Boolean) {
         if (::rootView.isInitialized) {
             if (showLoading) {
                 rootView.videoPlayerLoading.visibility = View.VISIBLE
@@ -281,22 +288,22 @@ class VideoPlayerFragment : Fragment(), View.OnClickListener, Player.EventListen
 //    }
 
 
-    private fun showErrorLayout(show: Boolean, errorMsgId: Int, errorCode: Int) {
+    fun showErrorLayout(show: Boolean, errorMsgId: Int, errorCode: Int) {
         if (show) {
             rootView.errorLayout.visibility = View.VISIBLE
             context.let {
                 rootView.errorText.text = getString(errorMsgId)
-//                when (errorCode) {
-//                    CONSTANTS.RESPONSE_SERVER_ERROR -> {
-//                        rootView.errorImage.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_server_48_dp, null))
-//                    }
-//                    CONSTANTS.RESPONSE_UNKNOWN -> {
-//                        rootView.errorImage.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_report_problem_black_48_px, null))
-//                    }
-//                    CONSTANTS.RESPONSE_INTERNET_ERROR -> {
-//                        rootView.errorImage.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_internet, null))
-//                    }
-//                }
+                when (errorCode) {
+                    ERROR_CODE_DEFAULT -> {
+                        rootView.errorImage.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_error, null))
+                    }
+                    RESPONSE_UNKNOWN -> {
+                        rootView.errorImage.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_error, null))
+                    }
+                    NO_INTERNET_CONNECTION -> {
+                        rootView.errorImage.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_internet, null))
+                    }
+                }
             }
         } else {
             rootView.errorLayout.visibility = View.GONE
@@ -371,15 +378,32 @@ class VideoPlayerFragment : Fragment(), View.OnClickListener, Player.EventListen
 
     }
 
+    override fun onPlayerError(error: ExoPlaybackException?) {
+        if (error!!.type === ExoPlaybackException.TYPE_SOURCE) {
+            val cause: IOException = error!!.sourceException
+            if (cause is HttpDataSource.HttpDataSourceException) {
+                // An HTTP error occurred.
+                val httpError: HttpDataSource.HttpDataSourceException = cause
+                // This is the request for which the error occurred.
+                // querying the cause.
+                if (httpError is InvalidResponseCodeException) {
+                    val responseCode = httpError.responseCode
+                    if(responseCode == 410){
+                        content.url = ""
+                        showErrorLayout(show = true, errorMsgId = R.string.server_error, errorCode = RESPONSE_UNKNOWN)
+                    }
+                    Timber.e("Response Code $responseCode")
+                    // message and headers.
+                } else {
+                    showErrorLayout(show = true, errorMsgId = R.string.no_internet, errorCode =  NO_INTERNET_CONNECTION)
+                }
+            }
+        }
+    }
+
     override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
         if (playbackState == Player.STATE_READY) {
             showLoading(false)
-        }
-        if (playbackState == Player.STATE_IDLE) {
-            //Todo Update Error Screen
-
-//            unRegisterMediaSession()
-//            showErrorLayout(true, R.string.status_code_default, CONSTANTS.RESPONSE_SERVER_ERROR)
         }
         if(playbackState == Player.STATE_BUFFERING){
             showLoading(false)
@@ -517,8 +541,9 @@ class VideoPlayerFragment : Fragment(), View.OnClickListener, Player.EventListen
             val watchedDuration = player.currentPosition
             content.duration = player.duration
             content.watchedDuration = watchedDuration
-
-            (activity as VideoPlayerListener).updateWatchedValue(content)
+            if(watchedDuration > 0){
+                (activity as VideoPlayerListener).updateWatchedValue(content)
+            }
         }
     }
 

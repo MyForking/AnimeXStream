@@ -45,7 +45,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/animeInfoRoot"
         android:layout_width="match_parent"
-        android:background="@android:color/white"
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_marginStart="30dp"
@@ -80,7 +79,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-medium"
             android:maxLines="2"
-            android:textColor="@color/anime_title"
+            android:textColor="@color/info_anime_title"
             android:textSize="22sp"
             app:layout_constraintBottom_toTopOf="@+id/typeLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -222,7 +221,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@android:color/white">
+       app:cardBackgroundColor="@android:color/transparent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -245,7 +244,7 @@
                 android:paddingEnd="4dp"
                 android:id="@+id/back"
                 android:src="@drawable/ic_arrow"
-                android:tint="@color/search_back" />
+                android:tint="@color/info_back" />
 
             <TextView
                 android:layout_width="0dp"
@@ -253,7 +252,7 @@
                 android:layout_toEndOf="@id/back"
                 android:layout_toStartOf="@id/favourite"
                 android:textSize="20sp"
-                android:textColor="@color/anime_title"
+                android:textColor="@color/info_anime_title"
                 android:gravity="center_vertical"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

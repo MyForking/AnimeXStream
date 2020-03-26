@@ -17,19 +17,21 @@
         android:paddingTop="20dp"
         android:paddingBottom="26dp"
         android:textSize="18sp"
+        android:textColor="@color/recycler_mini_header_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Recent Sub" />
 
     <TextView
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
         android:gravity="center"
         android:paddingTop="21dp"
         android:paddingBottom="25dp"
-        android:text="See more >"
+        android:text="@string/see_more"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

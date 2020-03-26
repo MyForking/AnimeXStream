@@ -10,8 +10,7 @@ import net.xblacky.animexstream.R
 import net.xblacky.animexstream.utils.model.Content
 
 class VideoPlayerActivity : AppCompatActivity(), VideoPlayerListener {
-    private var url =
-        "https://hls11xx.cdnfile.info/videos/hls/g62z5V-FaVOCLJV13hPCwg/1583017051/136872/c751bab1939a2b83020565e1ac242896/sub.923.m38"
+
     private lateinit var viewModel: VideoPlayerViewModel
     private var episodeNumber: String? = ""
     private var animeName: String? = ""
@@ -58,8 +57,13 @@ class VideoPlayerActivity : AppCompatActivity(), VideoPlayerListener {
                 if(!it.url.isNullOrEmpty()){
                     (playerFragment as VideoPlayerFragment).updateContent(it)
                 }
-
             }
+        })
+        viewModel.isLoading.observe(this, Observer {
+            (playerFragment as VideoPlayerFragment).showLoading(it.isLoading)
+        })
+        viewModel.errorModel.observe(this, Observer {
+            (playerFragment as VideoPlayerFragment).showErrorLayout(it.show, it.errorMsgId, it.errorCode)
         })
     }
 
@@ -120,6 +124,11 @@ class VideoPlayerActivity : AppCompatActivity(), VideoPlayerListener {
         }catch (obe: ArrayIndexOutOfBoundsException){
             ""
         }
+    }
+
+    fun refreshM3u8Url(){
+
+        viewModel.fetchEpisodeMediaUrl(fetchFromDb = false)
     }
 
 }

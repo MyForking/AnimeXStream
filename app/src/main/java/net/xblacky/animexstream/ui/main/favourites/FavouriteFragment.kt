@@ -20,7 +20,7 @@ import net.xblacky.animexstream.ui.main.favourites.epoxy.FavouriteController
 import net.xblacky.animexstream.utils.ItemOffsetDecoration
 import net.xblacky.animexstream.utils.model.FavouriteModel
 
-class FavouriteFragment: Fragment(), FavouriteController.EpoxySearchAdapterCallbacks {
+class FavouriteFragment: Fragment(), FavouriteController.EpoxySearchAdapterCallbacks,View.OnClickListener {
     private lateinit var rootView: View
     private lateinit var viewModel: FavouriteViewModel
     private val favouriteController by lazy {
@@ -34,6 +34,7 @@ class FavouriteFragment: Fragment(), FavouriteController.EpoxySearchAdapterCallb
          rootView = inflater.inflate(R.layout.fragment_favourite, container, false)
         setAdapters()
         transitionListener()
+        setClickListeners()
         return rootView
     }
 
@@ -106,9 +107,20 @@ class FavouriteFragment: Fragment(), FavouriteController.EpoxySearchAdapterCallb
             }
         )
     }
+    private fun setClickListeners(){
+        rootView.back.setOnClickListener(this)
+    }
 
     override fun animeTitleClick(model: FavouriteModel) {
         findNavController().navigate(FavouriteFragmentDirections.actionFavouriteFragmentToAnimeInfoFragment(categoryUrl = model.categoryUrl))
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.back ->{
+                findNavController().popBackStack()
+            }
+        }
     }
 
 }

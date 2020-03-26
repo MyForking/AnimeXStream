@@ -32,11 +32,8 @@ abstract class EpisodeModel : EpoxyModelWithHolder<EpisodeModel.HomeHeaderHolder
 //        holder.episodeType.text = "| "
         holder.cardView.setOnClickListener(clickListener)
         holder.progressBar.progress = watchedProgress.toInt()
-        if(watched){
-            holder.cardView.setCardBackgroundColor(ResourcesCompat.getColor(holder.cardView.resources, R.color.episode_background, null))
-        }else{
-            holder.cardView.setCardBackgroundColor(ResourcesCompat.getColor(holder.cardView.resources, android.R.color.white, null))
-        }
+        holder.cardView.setCardBackgroundColor(ResourcesCompat.getColor(holder.cardView.resources, R.color.episode_background, null))
+
     }
 
     class HomeHeaderHolder : EpoxyHolder(){

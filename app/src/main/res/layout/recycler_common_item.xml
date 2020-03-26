@@ -14,7 +14,6 @@
         android:layout_height="180dp"
         app:cardCornerRadius="4dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/episode_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -33,7 +32,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:layout_marginTop="4dp"
-        android:textColor="@color/sub_dub_text"
+        android:textColor="@color/recycler_anime_title"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
@@ -50,6 +49,7 @@
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:maxLines="2"
+        android:textColor="@color/recycler_releases_date"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
