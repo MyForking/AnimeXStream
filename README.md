@@ -54,7 +54,7 @@ Anime X Stream parses website to fetch required info, It removes all the ads so 
 Whether you have ideas, translations, design changes, code cleaning, or real heavy code changes, help is always welcome.
 The more is done the better it gets!
 
-[Pull requests](https://github.com/mukul500/AnimeXStream/pulls) will be reviewed if they meet a few guidelines:
+[Pull requests](https://github.com/mukul500/AnimeXStream/pulls) will be reviewed
 
 #### Known issues and limitations
 - Last Episode Progress not showing when getting back from player.
