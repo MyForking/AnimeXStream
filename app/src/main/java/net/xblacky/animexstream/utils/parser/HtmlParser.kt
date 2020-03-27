@@ -149,7 +149,7 @@ class HtmlParser {
                 releasedTime = formatInfoValues(releaseTime),
                 status = formatInfoValues(status),
                 genre = genre,
-                plotSummary = formatInfoValues(plotSummary),
+                plotSummary = formatInfoValues(plotSummary).trim(),
                 alias = alias,
                 endEpisode = endEpisode
             )

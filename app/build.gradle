@@ -9,6 +9,7 @@ apply plugin: 'realm-android'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
+
     signingConfigs {
         release {
             storeFile file('E:\\Projects\\animexstream.jks')
@@ -30,9 +31,10 @@ android {
         applicationId "net.xblacky.animexstream"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "0.1.1"
         vectorDrawables.useSupportLibrary = true
+        archivesBaseName = "AnimexStream-v$versionName"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

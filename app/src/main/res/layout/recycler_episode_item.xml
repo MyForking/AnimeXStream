@@ -35,11 +35,10 @@
             android:id="@+id/episodeNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
             android:textSize="16sp"
             tools:text="EP 127"
             android:paddingTop="12dp"
+            android:paddingBottom="2dp"
             android:textColor="@color/episode_text"
             android:gravity="center"
 
