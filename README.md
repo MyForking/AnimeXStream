@@ -12,6 +12,8 @@
 
 <b><br>PUTTING ANIME X STREAM OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR TERMS OF CONDITIONS.</b>
 
+<h3 align="center">**Star :star:  this repo to show your support and it really does matter!** :clap:</h4>
+
 ## Screenshots
 
 [<img src="meta/android/screenshots/screenshot_01.jpg" width=160>](meta/android/screenshots/screenshot_01.jpg)
@@ -26,6 +28,7 @@
 [<img src="meta/android/screenshots/screenshot_10.jpg" width=160>](meta/android/screenshots/screenshot_10.jpg)
 [<img src="meta/android/screenshots/screenshot_11.jpg" width=405>](meta/android/screenshots/screenshot_11.jpg)
 [<img src="meta/android/screenshots/screenshot_12.jpg" width=405>](meta/android/screenshots/screenshot_12.jpg)
+
 
 ## Description
 
@@ -49,6 +52,15 @@ Anime X Stream parses website to fetch required info, It removes all the ads so 
 * Different list of Popular/ Recent / Movies
 * Online syncing of Favourite list & watched progress (Will require Login)
 * … and many more
+
+### Technologies used
+* Kotlin
+* MVVM
+* Retrofit & RxJava
+* Epoxy
+* ExoPlayer
+* Android Architecture Components
+* Glide
 
 ## Contribution
 Whether you have ideas, translations, design changes, code cleaning, or real heavy code changes, help is always welcome.
