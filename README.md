@@ -55,9 +55,6 @@ Whether you have ideas, translations, design changes, code cleaning, or real hea
 The more is done the better it gets!
 
 [Pull requests](https://github.com/mukul500/AnimeXStream/pulls) will be reviewed if they meet a few guidelines:
-- Follow the code style
-- Add some useful feature or make the use of app better.
-- There is a significant amount of bad code and TODOs. Cleaning those problems up is appreciated
 
 #### Known issues and limitations
 - Last Episode Progress not showing when getting back from player.
