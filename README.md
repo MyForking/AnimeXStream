@@ -11,3 +11,18 @@
 <b>WARNING: THIS IS A BETA VERSION, THEREFORE YOU MAY ENCOUNTER BUGS. IF YOU DO, OPEN AN ISSUE VIA OUR GITHUB REPOSITORY.</b>
 
 <b><br>PUTTING ANIME X STREAM OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR TERMS OF CONDITIONS.</b>
+
+## Screenshots
+
+[<img src="meta/android/screenshots/screenshot_01.jpg" width=160>](meta/android/screenshots/screenshot_01.jpg)
+[<img src="meta/android/screenshots/screenshot_02.jpg" width=160>](meta/android/screenshots/screenshot_02.jpg)
+[<img src="meta/android/screenshots/screenshot_03.jpg" width=160>](meta/android/screenshots/screenshot_03.jpg)
+[<img src="meta/android/screenshots/screenshot_04.jpg" width=160>](meta/android/screenshots/screenshot_04.jpg)
+[<img src="meta/android/screenshots/screenshot_05.jpg" width=160>](meta/android/screenshots/screenshot_05.jpg)
+[<img src="meta/android/screenshots/screenshot_06.jpg" width=160>](meta/android/screenshots/screenshot_06.jpg)
+[<img src="meta/android/screenshots/screenshot_07.jpg" width=160>](meta/android/screenshots/screenshot_07.jpg)
+[<img src="meta/android/screenshots/screenshot_08.jpg" width=160>](meta/android/screenshots/screenshot_08.jpg)
+[<img src="meta/android/screenshots/screenshot_09.jpg" width=160>](meta/android/screenshots/screenshot_09.jpg)
+[<img src="meta/android/screenshots/screenshot_10.jpg" width=160>](meta/android/screenshots/screenshot_10.jpg)
+[<img src="meta/android/screenshots/screenshot_11.jpg" width=405>](meta/android/screenshots/screenshot_11.jpg)
+[<img src="meta/android/screenshots/screenshot_12.jpg" width=405>](meta/android/screenshots/screenshot_12.jpg)
