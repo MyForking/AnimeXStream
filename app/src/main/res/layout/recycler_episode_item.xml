@@ -9,7 +9,7 @@
     android:clickable="true"
     android:id="@+id/cardView"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardElevation="0.5dp"
+    app:cardElevation="1dp"
     android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +38,6 @@
             android:textSize="16sp"
             tools:text="EP 127"
             android:paddingTop="12dp"
-            android:paddingBottom="2dp"
             android:textColor="@color/episode_text"
             android:gravity="center"
 

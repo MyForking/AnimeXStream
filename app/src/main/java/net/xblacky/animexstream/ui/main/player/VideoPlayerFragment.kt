@@ -188,7 +188,7 @@ class VideoPlayerFragment : Fragment(), View.OnClickListener, Player.EventListen
 
     private fun toggleFullView() {
         if (isFullScreen) {
-            exoPlayerFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
+            exoPlayerFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
             exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
             player.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
             isFullScreen = false

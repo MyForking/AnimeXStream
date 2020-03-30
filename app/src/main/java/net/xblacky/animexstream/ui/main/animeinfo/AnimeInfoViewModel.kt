@@ -27,15 +27,10 @@ class AnimeInfoViewModel : CommonViewModel() {
     private var _isFavourite: MutableLiveData<Boolean> = MutableLiveData(false)
     var isFavourite: LiveData<Boolean> = _isFavourite
 
-    private var _animeInfoLoading: MutableLiveData<Boolean> = MutableLiveData(true)
-    var animeInfoLoading: LiveData<Boolean> = _animeInfoLoading
-    private var _episodeLoading: MutableLiveData<Boolean> = MutableLiveData(true)
-    var episodeLoading: LiveData<Boolean> = _episodeLoading
 
 
     fun fetchAnimeInfo() {
-        _episodeLoading.value = true
-        _animeInfoLoading.value = true
+       updateLoading(loading = true)
         updateErrorModel(false, null, false)
         categoryUrl?.let {
             compositeDisposable.add(
@@ -49,7 +44,6 @@ class AnimeInfoViewModel : CommonViewModel() {
         return object : DisposableObserver<ResponseBody>() {
             override fun onNext(response: ResponseBody) {
                 if (typeValue == C.TYPE_ANIME_INFO) {
-                    _animeInfoLoading.value = false
                     val animeInfoModel = HtmlParser.parseAnimeInfo(response = response.string())
                     _animeInfoModel.value = animeInfoModel
                     compositeDisposable.add(
@@ -64,8 +58,8 @@ class AnimeInfoViewModel : CommonViewModel() {
 
 
                 } else if (typeValue == C.TYPE_EPISODE_LIST) {
-                    _episodeLoading.value = false
                     _episodeList.value = HtmlParser.fetchEpisodeList(response = response.string())
+                    updateLoading(loading = false)
 
                 }
             }
@@ -75,9 +69,8 @@ class AnimeInfoViewModel : CommonViewModel() {
             }
 
             override fun onError(e: Throwable) {
-
+                updateLoading(loading = false)
                 if (typeValue == C.TYPE_ANIME_INFO) {
-                    _animeInfoLoading.value = false
                     updateErrorModel(show = true, e = e, isListEmpty = false)
                 } else {
                     updateErrorModel(show = true, e = e, isListEmpty = true)

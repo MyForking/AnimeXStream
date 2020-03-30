@@ -16,8 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_search.view.*
-import kotlinx.android.synthetic.main.fragment_search_placeholder.*
-import kotlinx.android.synthetic.main.fragment_search_placeholder.view.*
+import kotlinx.android.synthetic.main.loading.view.*
 import net.xblacky.animexstream.R
 import net.xblacky.animexstream.ui.main.search.epoxy.SearchController
 import net.xblacky.animexstream.utils.ItemOffsetDecoration
@@ -50,7 +49,6 @@ class SearchFragment : Fragment(), View.OnClickListener, SearchController.EpoxyS
     }
 
     private fun setEditTextListener(){
-        rootView.searchEditText.requestFocus()
         rootView.searchEditText.setOnEditorActionListener(OnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideKeyBoard()
@@ -102,15 +100,12 @@ class SearchFragment : Fragment(), View.OnClickListener, SearchController.EpoxyS
         viewModel.isLoading.observe( viewLifecycleOwner, Observer {
             if(it.isLoading){
                 if(it.isListEmpty){
-                    rootView.shimmerLayout.startShimmer()
-                    shimmerLayout.visibility = View.VISIBLE
+                    rootView.loading.visibility =  View.VISIBLE
                 }else{
-                    rootView.shimmerLayout.stopShimmer()
-                    shimmerLayout.visibility = View.GONE
+                    rootView.loading.visibility = View.GONE
                 }
             }else{
-                rootView.shimmerLayout.stopShimmer()
-                shimmerLayout.visibility = View.GONE
+               rootView.loading.visibility = View.GONE
             }
             searchController.setData(viewModel.searchList.value, it.isLoading)
         })

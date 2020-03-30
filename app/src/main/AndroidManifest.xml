@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="net.xblacky.animexstream"
-    >
+    package="net.xblacky.animexstream">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
+
 
     <application
         android:name=".AnimeXStream"
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="true">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.player.VideoPlayerActivity"
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="density"/>
+        <activity
+            android:name=".ui.main.player.VideoPlayerActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/VideoPlayer"
             tools:ignore="LockedOrientationActivity" />

@@ -69,16 +69,11 @@
         android:paddingEnd="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-
         android:clipToPadding="false"
         />
-
     <include
-        layout="@layout/fragment_search_placeholder"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/cardView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        layout="@layout/loading"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

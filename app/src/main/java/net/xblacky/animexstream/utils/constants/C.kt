@@ -2,6 +2,9 @@ package net.xblacky.animexstream.utils.constants
 
 class C {
     companion object{
+
+        const val GIT_DOWNLOAD_URL = "https://github.com/mukul500/AnimeXStream/"
+
         //Error Codes
         const val RESPONSE_UNKNOWN: Int = 1000
         const val ERROR_CODE_DEFAULT: Int = -1000
@@ -55,5 +58,6 @@ class C {
 
         //Realm
         const val MAX_TIME_M3U8_URL = 2 * 60 * 60 *1000
+        const val MAX_TIME_FOR_ANIME = 2 * 24 * 60 *60 * 1000
     }
 }

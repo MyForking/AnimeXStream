@@ -1,19 +1,26 @@
 package net.xblacky.animexstream
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build.VERSION_CODES
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import timber.log.Timber
-import java.sql.Time
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        if (Build.VERSION.SDK_INT < VERSION_CODES.Q){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
         toggleDayNight()
         setContentView(R.layout.main_activity)
     }
@@ -36,4 +43,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

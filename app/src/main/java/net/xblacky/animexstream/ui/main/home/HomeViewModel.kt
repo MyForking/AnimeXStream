@@ -3,6 +3,9 @@ package net.xblacky.animexstream.ui.main.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.realm.*
@@ -10,6 +13,7 @@ import net.xblacky.animexstream.utils.Utils
 import net.xblacky.animexstream.utils.constants.C
 import net.xblacky.animexstream.utils.model.AnimeMetaModel
 import net.xblacky.animexstream.utils.model.HomeScreenModel
+import net.xblacky.animexstream.utils.model.UpdateModel
 import net.xblacky.animexstream.utils.parser.HtmlParser
 import net.xblacky.animexstream.utils.realm.InitalizeRealm
 import okhttp3.ResponseBody
@@ -22,11 +26,15 @@ class HomeViewModel : ViewModel(){
     private val  homeRepository = HomeRepository()
     private var _animeList: MutableLiveData<ArrayList<HomeScreenModel>> = MutableLiveData(makeEmptyArrayList())
     var animeList : LiveData<ArrayList<HomeScreenModel>> = _animeList
+    private var _updateModel: MutableLiveData<UpdateModel> = MutableLiveData()
+    var updateModel : LiveData<UpdateModel> = _updateModel
     private val compositeDisposable = CompositeDisposable()
     private val realmListenerList = ArrayList<RealmResults<AnimeMetaModel>>()
+    private lateinit var database: DatabaseReference
 
     init {
         fetchHomeList()
+        queryDB()
     }
 
     private fun fetchHomeList(){
@@ -37,6 +45,24 @@ class HomeViewModel : ViewModel(){
         fetchMovies()
     }
 
+    private fun queryDB(){
+        database = Firebase.database.reference
+        val query: Query = database.child("appdata")
+        query.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(ignored: DatabaseError) {
+                Timber.e(ignored.message)
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Timber.e(snapshot.toString())
+                _updateModel.value = UpdateModel(
+                    versionCode = snapshot.child("versionCode").value as Long,
+                    whatsNew = snapshot.child("whatsNew").value.toString()
+                )
+            }
+
+        })
+    }
     private fun getHomeListObserver(typeValue: Int): DisposableObserver<ResponseBody> {
         return  object : DisposableObserver<ResponseBody>(){
             override fun onComplete() {

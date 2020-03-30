@@ -16,8 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_animeinfo.*
 import kotlinx.android.synthetic.main.fragment_animeinfo.view.*
 import kotlinx.android.synthetic.main.fragment_animeinfo.view.animeInfoRoot
-import kotlinx.android.synthetic.main.fragment_animeinfo_upper_placeholder.view.*
-import kotlinx.android.synthetic.main.fragment_animeinfor_lower_placeholder.view.*
+import kotlinx.android.synthetic.main.loading.view.*
 import net.xblacky.animexstream.R
 import net.xblacky.animexstream.ui.main.animeinfo.epoxy.AnimeInfoController
 import net.xblacky.animexstream.ui.main.home.HomeFragment
@@ -61,36 +60,27 @@ class AnimeInfoFragment : Fragment() {
     private fun setObserver() {
         viewModel.animeInfoModel.observe(viewLifecycleOwner, Observer {
             it?.let {
-                rootView.animeInfoRoot.visibility = View.VISIBLE
                 updateViews(it)
             }
         })
 
         viewModel.episodeList.observe(viewLifecycleOwner, Observer {
             it?.let {
+                rootView.animeInfoRoot.visibility = View.VISIBLE
                 episodeController.setData(it)
             }
         })
 
-        viewModel.animeInfoLoading.observe(viewLifecycleOwner, Observer {
-            if(it){
-                rootView.animeInfoUpperShimmer.startShimmer()
-                rootView.animeInfoUpperShimmer.visibility = View. VISIBLE
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer {
+
+            if(it.isLoading){
+                rootView.loading.visibility = View.VISIBLE
             }else{
-                rootView.animeInfoUpperShimmer.stopShimmer()
-                rootView.animeInfoUpperShimmer.visibility = View. GONE
+                rootView.loading.visibility = View.GONE
             }
         })
 
-        viewModel.episodeLoading.observe(viewLifecycleOwner, Observer {
-            if(it){
-                rootView.episodeShimmer.startShimmer()
-                rootView.episodeShimmer.visibility = View. VISIBLE
-            }else{
-                rootView.episodeShimmer.stopShimmer()
-                rootView.episodeShimmer.visibility = View. GONE
-            }
-        })
+
 
         viewModel.isFavourite.observe(viewLifecycleOwner, Observer {
             if(it){

@@ -20,7 +20,7 @@
             android:id="@id/header"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:paddingLeft="30dp"
+            android:paddingLeft="20dp"
             android:paddingRight="30dp"
             android:paddingTop="20dp"
             android:paddingBottom="10dp"

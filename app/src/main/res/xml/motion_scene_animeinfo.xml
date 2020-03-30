@@ -27,25 +27,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:background="@android:color/white"/>
 
-        <Constraint
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/animeInfoUpperShimmer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/topView"
-            app:visibilityMode="ignore"
-            />
-        <Constraint
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/episodeShimmer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/animeInfoSummary"
-            app:visibilityMode="ignore"
-            />
 
 
         <Constraint
@@ -73,12 +54,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animeInfoRoot"
             />
+        <Constraint android:id="@+id/loading">
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
+        </Constraint>
 
 
     </ConstraintSet>
 
 
-    <ConstraintSet android:id="@+id/end">
+    <ConstraintSet android:id="@+id/end"
+        motion:deriveConstraintsFrom="@id/start"
+        >
 
 
         <Constraint
@@ -120,25 +108,15 @@
             app:layout_constraintBottom_toBottomOf="@id/topView"
             android:background="@drawable/shadow_backgorund"
             />
-        <Constraint
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/animeInfoUpperShimmer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/topView"
-            app:visibilityMode="ignore"
-            />
-        <Constraint
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/episodeShimmer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/animeInfoSummary"
-            app:visibilityMode="ignore"
-            />
+<!--        <Constraint-->
+<!--            android:id="@id/loading"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="parent"-->
+<!--            app:visibilityMode="ignore"-->
+<!--            />-->
+
 
     </ConstraintSet>
 
