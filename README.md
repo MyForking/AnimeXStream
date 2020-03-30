@@ -3,14 +3,14 @@
 <h4 align="center">An Android app to watch anime on your phone without ads.</h4>
 <p align="center"><a href="/downloads"><img src="/meta/android/download.png"></a></p> 
 <p align="center">
-<a href="https://github.com/mukul500/AnimeXStream" alt="GitHub release"><img src="https://img.shields.io/badge/version-0.1.1-blue.svg" ></a>
+<a href="https://github.com/mukul500/AnimeXStream" alt="GitHub release"><img src="https://img.shields.io/badge/version-0.1.2-blue.svg" ></a>
 <a href="/LICENSE" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-MIT-orange.svg"></a>
 <a href="" alt="Build Status"><img src="https://img.shields.io/badge/build-passing-yellowgreen.svg"></a>
 </p>
 <hr>
-<b>WARNING: THIS IS A BETA VERSION, THEREFORE YOU MAY ENCOUNTER BUGS. IF YOU DO, OPEN AN ISSUE VIA OUR GITHUB REPOSITORY.</b>
+<b>WARNING: THIS IS A BETA VERSION of application, THEREFORE YOU MAY ENCOUNTER BUGS. You can OPEN the ISSUE on GITHUB REPOSITORY.</b>
 
-<b><br>PUTTING ANIME X STREAM OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR TERMS OF CONDITIONS.</b>
+<b><br>Do not PUT ANIME X STREAM OR ANY FORK OF IT INTO GOOGLE PLAYSTORE or Any other Store. It may VIOLATE THEIR TERMS AND CONDITIONS or you may encounter legal obligations.</b>
 
 <h3 align="center">**Star :star:  this repo to show your support and it really does matter!** :clap:</h4>
 
@@ -32,7 +32,7 @@
 
 ## Description
 
-Anime X Stream parses website to fetch required info, It removes all the ads so you can have a Ads free experience. Also, you don't need to create a account to use Anime X Stream
+Anime X Stream parses website data and filter required info, thus It removes the ads for seamless experience. The app doesn't require account creation to use it.
 
 ### Features
 
@@ -63,8 +63,7 @@ Anime X Stream parses website to fetch required info, It removes all the ads so 
 * Glide
 
 ## Contribution
-Whether you have ideas, translations, design changes, code cleaning, or real heavy code changes, help is always welcome.
-The more is done the better it gets!
+Your ideas, translations, design changes, code cleaning, or real heavy code changes or any help is always welcome. The more is contribution the better it gets
 
 [Pull requests](https://github.com/mukul500/AnimeXStream/pulls) will be reviewed
 
